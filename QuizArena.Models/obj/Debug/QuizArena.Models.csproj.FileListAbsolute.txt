@@ -1,0 +1,13 @@
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\QuizArena.Models.dll.config
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\QuizArena.Models.dll
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\QuizArena.Models.pdb
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\EntityFramework.dll
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\EntityFramework.xml
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\obj\Debug\QuizArena.Models.dll
+E:\Fucking final try\TWO\QuizArena\QuizArena.Models\obj\Debug\QuizArena.Models.pdb
