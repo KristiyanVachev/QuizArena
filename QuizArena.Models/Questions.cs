@@ -8,29 +8,15 @@ namespace QuizArena.Models
 {
     public class Question
     {
-        private ICollection<Answer> inCorrectAnswer;
-        public Question()
-        {
-            this.inCorrectAnswer = new HashSet<Answer>();
-        }
-
         public int Id { get; set; }
 
         public string Condition { get; set; }
 
-        public Answer CorrectAnswer { get; set; }
+        public string CorrectAnswer { get; set; }
 
-        public virtual ICollection<Answer> InCorrectAnswers
-        {
-            get
-            {
-                return this.inCorrectAnswer;
-            }
-            set
-            {
-                this.inCorrectAnswer = value;
-            }
-        }
+        public string FirstIncorrect { get; set; }
+        public string SecondIncorrect { get; set; }
+        public string ThirdIncorrect { get; set; }
 
         public string Description { get; set; }
 
@@ -38,8 +24,8 @@ namespace QuizArena.Models
         public virtual Category Category { get; set; }
 
         //statistics for every question
-        public int? CorrectAnswersCount { get; set; }
-        public int? IncorrectAnswerCount { get; set; }
+        public int? CorrectsCount { get; set; }
+        public int? IncorrectsCount { get; set; }
 
         //TO-DO - Category (dictionary, hash...)
     }

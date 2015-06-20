@@ -22,30 +22,42 @@ namespace QuizArena.Data.Migrations
 
         protected override void Seed(QuizArenaDbContext context)
         {
-            context.Categories.AddOrUpdate(
-                c => c.Id,
-                //new Category
-                //{
-                //    Name = "Software",
-                //    Questions = new List<Question>()
-                //    {
-                //        new Question
-                //        {
-                //            Condition = "Which is software?",
-                //            CorrectAnswer = {Text = "Antivirus"},
-                //            InCorrectAnswers = new List<Answer>()
-                //                {
-                //                    new Answer { Text = "RAM"},
-                //                    new Answer { Text = "Hard Drive"},
-                //                    new Answer { Text = "Graphics card"}
-                //                }
-                //        },
-                //    }
-                //},
-                new Category { Name = "Hardware" }
-                );
+            //context.Categories.AddOrUpdate(
+            //    c => c.Id,
+            //    //new Category
+            //    //{
+            //    //    Name = "Software",
+            //    //    Questions = new List<Question>()
+            //    //    {
+            //    //        new Question
+            //    //        {
+            //    //            Condition = "Which is software?",
+            //    //            CorrectAnswer = {Text = "Antivirus"},
+            //    //            InCorrectAnswers = new List<Answer>()
+            //    //                {
+            //    //                    new Answer { Text = "RAM"},
+            //    //                    new Answer { Text = "Hard Drive"},
+            //    //                    new Answer { Text = "Graphics card"}
+            //    //                }
+            //    //        },
+            //    //    }
+            //    //}
+            //    new Category { Name = "Hardware", Id = 0 },
+            //    new Category { Name = "Software", Id = 1 }
+            //    );
 
-            context.SaveChanges();
+            //context.Questions.AddOrUpdate(
+            //    q => q.Id,
+            //    new Question
+            //    {
+            //        Id = 0,
+            //        Condition = "Which is software",
+            //        CategoryId = 0,
+            //        CorrectAnswer = new Answer { Text = "Antivirus", QuestionId = 0 }
+            //    }
+            //    );
+
+
 
             //----------
             //ROLES (Admin)
@@ -77,9 +89,8 @@ namespace QuizArena.Data.Migrations
 
             context.Users.AddOrUpdate(user);
 
-            context.SaveChanges();
 
-            
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
