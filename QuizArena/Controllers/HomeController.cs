@@ -33,33 +33,73 @@ namespace QuizArena.Controllers
 
         public ActionResult FullTest()
         {
+            Random rnd = new Random();
             var categories = this.context.Categories.ToList();
             var questions = new List<Question>();
-            var counter = 0;
+            var indexes = new List<int>(); //list for the three question indexes i need
 
+            //Taking questions from each category.
             foreach (var category in categories)
             {
-                counter++;
-                var questionForAdd = category.Questions.FirstOrDefault(q => q.Id == counter);
-                if (questionForAdd != null)
-                    questions.Add(questionForAdd);
+                indexes.Clear();
 
-                counter++;
-                questionForAdd = category.Questions.FirstOrDefault(q => q.Id == counter);
-                if (questionForAdd != null)
-                    questions.Add(questionForAdd);
+                var numberOfQuestions = category.Questions.Count(); //amount of the questions in the category
 
-                counter++;
-                questionForAdd = category.Questions.FirstOrDefault(q => q.Id == counter);
-                if (questionForAdd != null)
-                    questions.Add(questionForAdd);
+                var questionsNeeded = 3;
+                if (numberOfQuestions < 3) //validation if the amount of questions is not enough
+                {
+                    questionsNeeded = numberOfQuestions;
+                }
+
+                //getting the amount of needed indexes for the needed questions
+                for (int i = 0; i < questionsNeeded; i++)
+                {
+                    if (indexes.Contains(rnd.Next(0, numberOfQuestions)))
+                    {
+                        i--;                    
+                    }
+                    else
+                    {
+                        indexes.Add(rnd.Next(0, numberOfQuestions));
+                    }
+                }
+
+                //Iterating trough every question in the category and picking the "questions needed"
+                int counter = 0;
+                foreach (var question in category.Questions)
+                {
+                    foreach (var index in indexes)
+                    {
+                        if (counter == index)
+                        {
+                            questions.Add(question);
+                            questionsNeeded--;
+                            //--TO-DO-- maybe remove the index for optimization
+                            continue;
+                        }
+                    }
+
+                    if (questionsNeeded < 1) //when it doesn't need any more questions, stop.
+                    {
+                        break;
+                    }
+
+                    counter++;
+                }
             }
-
 
             ViewBag.Message = "Your application description page.";
 
             return View(questions);
         }
+
+        //public ActionResult CorrectAnswer(int id)
+        //{
+        //    // Mojesh da dobavish tochki na user-a
+        //    // Mojesh da dobavish vuprosa v nqkakva kolekciq, za da ne moje da bude zadavan sled tova otnovo
+
+        //    return new EmptyResult();
+        //}
 
         public ActionResult Competative()
         {
