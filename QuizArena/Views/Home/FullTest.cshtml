@@ -1,0 +1,16 @@
+﻿@using QuizArena.Models
+@model IList<Question>
+@{
+    ViewBag.Title = "FullTest";
+}
+
+<h2>FullTest</h2>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var question in Model)
+    {
+        <p>Id: @question.Id</p>
+        <p>Condition: @question.Condition</p>
+    }
+}
