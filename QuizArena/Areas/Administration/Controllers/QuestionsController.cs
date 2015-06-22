@@ -16,15 +16,34 @@ namespace QuizArena.Areas.Administration.Controllers
         private QuizArenaDbContext db = new QuizArenaDbContext();
 
         // GET: Administration/Questions
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var questions = db.Questions.Include(q => q.Category);
+            //var questions = db.Questions.Include(q => q.Category);
 
+
+
+            //return View(questions.ToList());
+
+            ViewBag.ConditionSortParm = String.IsNullOrEmpty(sortOrder) ? "condition_desc" : "";
+            var questions = from s in db.Questions
+                           select s;
+
+            //paging
             if (!String.IsNullOrEmpty(searchString))
             {
                 questions = questions.Where(s => s.Condition.Contains(searchString));
             }
 
+            //sorting
+            switch (sortOrder)
+            {
+                case "condition_desc":
+                    questions = questions.OrderByDescending(s => s.Condition);
+                    break;
+                default:
+                    questions = questions.OrderBy(s => s.Condition);
+                    break;
+            }
             return View(questions.ToList());
         }
 

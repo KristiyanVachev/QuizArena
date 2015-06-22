@@ -21,7 +21,7 @@ namespace QuizArena.Controllers
             //var denidedQuestions= new List<Question>();
 
             //var questionsCollection = category.Questions.Where(q => !(denidedQuestions.Contains(q)));
-          
+
             return View();
         }
 
@@ -40,17 +40,17 @@ namespace QuizArena.Controllers
         public ActionResult FullTest()
         {
             //starting a new quiz
-            //var userId = this.User.Identity.GetUserId();
-            //var quiz = new Quiz
-            //{
-            //    ApplicationUserId = userId,
-            //    GameType = "Full Game",
-            //    //Start = DateTime.Now,
-            //    CorrectCount = 0,
-            //    InCorrectCount = 0          
-            //};
-            //this.context.Quizes.Add(quiz);
-            //this.context.SaveChanges();
+            var userId = this.User.Identity.GetUserId();
+            var quiz = new Quiz
+            {
+                ApplicationUserId = userId,
+                GameType = "Full Game",
+                Start = DateTime.Now,
+                CorrectCount = 0,
+                InCorrectCount = 0
+            };
+            this.context.Quizes.Add(quiz);
+            this.context.SaveChanges();
 
             Random rnd = new Random();
             var categories = this.context.Categories.ToList();
@@ -76,7 +76,7 @@ namespace QuizArena.Controllers
                     int random = rnd.Next(0, numberOfQuestions);
                     if (indexes.Contains(random))
                     {
-                        i--;            
+                        i--;
                     }
                     else
                     {
@@ -131,78 +131,96 @@ namespace QuizArena.Controllers
 
         public ActionResult DisplayQuestion(Question q)
         {
-        //  var question = this.context.Questions.FirstOrDefault(q => q.Id == id);
+            //  var question = this.context.Questions.FirstOrDefault(q => q.Id == id);
             return PartialView("_DisplayQuestion", q);
         }
 
-        //public ActionResult CorrectAnswer(int id, string gameType)
-        //{
-        //    var userId = this.User.Identity.GetUserId();
-        //    var user = this.context.Users.FirstOrDefault(us => us.Id == userId);
-        //    var quiz = this.context.Quizes.OrderByDescending(q => q.Start).FirstOrDefault(q => q.ApplicationUserId == userId);
+        public ActionResult CorrectAnswer(int id, string gameType)
+        {
+            var userId = this.User.Identity.GetUserId();
+            var user = this.context.Users.FirstOrDefault(us => us.Id == userId);
+            var quiz = this.context.Quizes.OrderByDescending(q => q.Start).FirstOrDefault(q => q.ApplicationUserId == userId);
+            var questions = this.context.Questions.FirstOrDefault(q => q.Id == id);
 
-        //    if (gameType == "FullTest")
-        //    {
-        //        quiz.CorrectCount++;
-        //        //TO-DO question statistic
-        //    }
-        //    else //while Competative is not yet active, the only other option is Training.
-        //    {
-        //        quiz.CorrectAnswered.Add(context.Questions.FirstOrDefault(q => q.Id == id));
-        //    }
+            if (gameType == "FullTest")
+            {
+                quiz.CorrectCount++;
+                if (questions.CorrectsCount == null)
+                {
+                    questions.CorrectsCount = 1;
+                }
+                else
+                {
+                    questions.CorrectsCount++;
+                }
+            }
+            else //while Competative is not yet active, the only other option is Training.
+            {
+                quiz.CorrectAnswered.Add(context.Questions.FirstOrDefault(q => q.Id == id));
+            }
 
-        //    return new EmptyResult();
-        //}
+            context.SaveChanges();
+            return new EmptyResult();
+        }
 
-        //public ActionResult InCorrectAnswer(int id, string gameType)
-        //{
-        //    var userId = this.User.Identity.GetUserId();
-        //    var user = this.context.Users.FirstOrDefault(us => us.Id == userId);
-        //    var quiz = this.context.Quizes.OrderByDescending(q => q.Start).FirstOrDefault(q => q.ApplicationUserId == userId);
+        public ActionResult InCorrectAnswer(int id, string gameType)
+        {
+            var userId = this.User.Identity.GetUserId();
+            var user = this.context.Users.FirstOrDefault(us => us.Id == userId);
+            var quiz = this.context.Quizes.OrderByDescending(q => q.Start).FirstOrDefault(q => q.ApplicationUserId == userId);
+            var questions = this.context.Questions.FirstOrDefault(q => q.Id == id);
 
-        //    if (gameType == "FullTest")
-        //    {
-        //        quiz.InCorrectCount++;
-        //        //TO-DO question statistic
-        //    }
-        //    else //while Competative is not yet active, the only other option is Training.
-        //    {
-        //        quiz.InCorrectAnswered.Add(context.Questions.FirstOrDefault(q => q.Id == id));
-        //    }
-        //    return new EmptyResult();
-        //}
+            if (gameType == "FullTest")
+            {
+                quiz.InCorrectCount++;
+                if (questions.IncorrectsCount == null)
+                {
+                    questions.IncorrectsCount = 1;
+                }
+                else
+                {
+                    questions.IncorrectsCount++;
+                }
+            }
+            else //while Competative is not yet active, the only other option is Training.
+            {
+                quiz.InCorrectAnswered.Add(context.Questions.FirstOrDefault(q => q.Id == id));
+            }
+            context.SaveChanges();
+            return new EmptyResult();
+        }
 
-        //public ActionResult EndGame(int id, string gameType)
-        //{
-        //    var userId = this.User.Identity.GetUserId();
-        //    var user = this.context.Users.FirstOrDefault(us => us.Id == userId);
-        //    var quiz = this.context.Quizes.OrderByDescending(q => q.Start).FirstOrDefault(q => q.ApplicationUserId == userId);
+        public ActionResult EndGame(int id, string gameType)
+        {
+            var userId = this.User.Identity.GetUserId();
+            var user = this.context.Users.FirstOrDefault(us => us.Id == userId);
+            var quiz = this.context.Quizes.OrderByDescending(q => q.Start).FirstOrDefault(q => q.ApplicationUserId == userId);
 
-        //    quiz.End = DateTime.Now;
-        //    //add points, increase level.
+            quiz.End = DateTime.Now;
+            //add points, increase level.
 
-        //    if (gameType == "FullTest")
-        //    {
-        //        //return quiz - time and counts
-        //    }
-        //    else //training
-        //    {
-        //        foreach (var question in quiz.CorrectAnswered)
-        //        {
-        //            //question.Category.Difficulty++;
+            if (gameType == "FullTest")
+            {
+                //return quiz - time and counts
+            }
+            else //training
+            {
+                foreach (var question in quiz.CorrectAnswered)
+                {
+                    //question.Category.Difficulty++;
 
-        //            //user.CategoryExp.Difficulty++; //RIGHT!??
-        //        }
-        //        foreach (var question in quiz.InCorrectAnswered)
-        //        {
-        //            //question.Category.Difficulty--;
-        //        }
+                    //user.CategoryExp.Difficulty++; //RIGHT!??
+                }
+                foreach (var question in quiz.InCorrectAnswered)
+                {
+                    //question.Category.Difficulty--;
+                }
 
-        //        //return quiz - wrongs(condition, correct, description, number of wrongs)
-        //    }
+                //return quiz - wrongs(condition, correct, description, number of wrongs)
+            }
 
-        //    return new EmptyResult();
-        //}
+            return new EmptyResult();
+        }
 
     }
 }

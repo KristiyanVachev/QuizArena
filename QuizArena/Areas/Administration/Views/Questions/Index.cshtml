@@ -23,9 +23,13 @@
         <th>
             @Html.DisplayNameFor(model => model.Category.Name)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Condition)
+        </th>*@
+        <th>
+            @Html.ActionLink("Condition", "Index", new { sortOrder = ViewBag.ConditionSortParm })
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.CorrectAnswer)
         </th>
