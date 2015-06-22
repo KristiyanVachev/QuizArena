@@ -26,6 +26,7 @@ namespace QuizArena.Data
 
         public virtual IDbSet<Category> Categories { get; set; }
         public virtual IDbSet<Question> Questions { get; set; }
+        public virtual IDbSet<Quiz> Quizes { get; set; }
         public static QuizArenaDbContext Create()
         {
             return new QuizArenaDbContext();

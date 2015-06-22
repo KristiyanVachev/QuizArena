@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace QuizArena.Controllers
 {
@@ -20,12 +21,17 @@ namespace QuizArena.Controllers
             //var denidedQuestions= new List<Question>();
 
             //var questionsCollection = category.Questions.Where(q => !(denidedQuestions.Contains(q)));
-
+          
             return View();
         }
 
         public ActionResult Training()
         {
+            //PSEUDO CODE
+            //like the FUllGame but...
+            //get the categoryId's of the 2 worst categories
+            //put 30% of the worst, 20% of the 2nd worst, 50% each category - 20questions
+
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -33,6 +39,19 @@ namespace QuizArena.Controllers
 
         public ActionResult FullTest()
         {
+            //starting a new quiz
+            //var userId = this.User.Identity.GetUserId();
+            //var quiz = new Quiz
+            //{
+            //    ApplicationUserId = userId,
+            //    GameType = "Full Game",
+            //    //Start = DateTime.Now,
+            //    CorrectCount = 0,
+            //    InCorrectCount = 0          
+            //};
+            //this.context.Quizes.Add(quiz);
+            //this.context.SaveChanges();
+
             Random rnd = new Random();
             var categories = this.context.Categories.ToList();
             var questions = new List<Question>();
@@ -54,13 +73,14 @@ namespace QuizArena.Controllers
                 //getting the amount of needed indexes for the needed questions
                 for (int i = 0; i < questionsNeeded; i++)
                 {
-                    if (indexes.Contains(rnd.Next(0, numberOfQuestions)))
+                    int random = rnd.Next(0, numberOfQuestions);
+                    if (indexes.Contains(random))
                     {
-                        i--;                    
+                        i--;            
                     }
                     else
                     {
-                        indexes.Add(rnd.Next(0, numberOfQuestions));
+                        indexes.Add(random);
                     }
                 }
 
@@ -93,13 +113,7 @@ namespace QuizArena.Controllers
             return View(questions);
         }
 
-        //public ActionResult CorrectAnswer(int id)
-        //{
-        //    // Mojesh da dobavish tochki na user-a
-        //    // Mojesh da dobavish vuprosa v nqkakva kolekciq, za da ne moje da bude zadavan sled tova otnovo
 
-        //    return new EmptyResult();
-        //}
 
         public ActionResult Competative()
         {
@@ -114,6 +128,81 @@ namespace QuizArena.Controllers
 
             return View();
         }
+
+        public ActionResult DisplayQuestion(Question q)
+        {
+        //  var question = this.context.Questions.FirstOrDefault(q => q.Id == id);
+            return PartialView("_DisplayQuestion", q);
+        }
+
+        //public ActionResult CorrectAnswer(int id, string gameType)
+        //{
+        //    var userId = this.User.Identity.GetUserId();
+        //    var user = this.context.Users.FirstOrDefault(us => us.Id == userId);
+        //    var quiz = this.context.Quizes.OrderByDescending(q => q.Start).FirstOrDefault(q => q.ApplicationUserId == userId);
+
+        //    if (gameType == "FullTest")
+        //    {
+        //        quiz.CorrectCount++;
+        //        //TO-DO question statistic
+        //    }
+        //    else //while Competative is not yet active, the only other option is Training.
+        //    {
+        //        quiz.CorrectAnswered.Add(context.Questions.FirstOrDefault(q => q.Id == id));
+        //    }
+
+        //    return new EmptyResult();
+        //}
+
+        //public ActionResult InCorrectAnswer(int id, string gameType)
+        //{
+        //    var userId = this.User.Identity.GetUserId();
+        //    var user = this.context.Users.FirstOrDefault(us => us.Id == userId);
+        //    var quiz = this.context.Quizes.OrderByDescending(q => q.Start).FirstOrDefault(q => q.ApplicationUserId == userId);
+
+        //    if (gameType == "FullTest")
+        //    {
+        //        quiz.InCorrectCount++;
+        //        //TO-DO question statistic
+        //    }
+        //    else //while Competative is not yet active, the only other option is Training.
+        //    {
+        //        quiz.InCorrectAnswered.Add(context.Questions.FirstOrDefault(q => q.Id == id));
+        //    }
+        //    return new EmptyResult();
+        //}
+
+        //public ActionResult EndGame(int id, string gameType)
+        //{
+        //    var userId = this.User.Identity.GetUserId();
+        //    var user = this.context.Users.FirstOrDefault(us => us.Id == userId);
+        //    var quiz = this.context.Quizes.OrderByDescending(q => q.Start).FirstOrDefault(q => q.ApplicationUserId == userId);
+
+        //    quiz.End = DateTime.Now;
+        //    //add points, increase level.
+
+        //    if (gameType == "FullTest")
+        //    {
+        //        //return quiz - time and counts
+        //    }
+        //    else //training
+        //    {
+        //        foreach (var question in quiz.CorrectAnswered)
+        //        {
+        //            //question.Category.Difficulty++;
+
+        //            //user.CategoryExp.Difficulty++; //RIGHT!??
+        //        }
+        //        foreach (var question in quiz.InCorrectAnswered)
+        //        {
+        //            //question.Category.Difficulty--;
+        //        }
+
+        //        //return quiz - wrongs(condition, correct, description, number of wrongs)
+        //    }
+
+        //    return new EmptyResult();
+        //}
 
     }
 }

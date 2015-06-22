@@ -16,9 +16,15 @@ namespace QuizArena.Areas.Administration.Controllers
         private QuizArenaDbContext db = new QuizArenaDbContext();
 
         // GET: Administration/Questions
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var questions = db.Questions.Include(q => q.Category);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                questions = questions.Where(s => s.Condition.Contains(searchString));
+            }
+
             return View(questions.ToList());
         }
 

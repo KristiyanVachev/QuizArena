@@ -11,6 +11,12 @@ namespace QuizArena.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        private ICollection<Quiz> quizes;
+
+        public ApplicationUser()
+        {
+            this.quizes = new HashSet<Quiz>();
+        }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -19,6 +25,21 @@ namespace QuizArena.Models
             return userIdentity;
         }
 
+        public virtual ICollection<Quiz> Quizes
+        {
+            get
+            {
+                return this.quizes;
+            }
+            set
+            {
+                this.quizes = value;
+            }
+        }
+
+        public int Points { get; set; }
         public int Level { get; set; }
+        public ICollection<Category> CategoryExp { get; set; }
+
     }
 }

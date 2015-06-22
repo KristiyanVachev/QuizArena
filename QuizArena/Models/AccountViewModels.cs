@@ -48,6 +48,8 @@ namespace QuizArena.Models
 
     public class LoginViewModel
     {
+        //public string Username { get; set; }
+
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -64,6 +66,8 @@ namespace QuizArena.Models
 
     public class RegisterViewModel
     {
+        //public string Username { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

@@ -10,13 +10,7 @@
 {
     foreach (var question in Model)
     {
-        <p>Id: @question.Id</p>
-        <p>Condition: @question.Condition</p>
+        @Html.Action("DisplayQuestion", "Home", new { q = question })
 
-   //     foreach (var answer in question.Incorrects)
-   //     {
-   //         <a href="#" class="incorrect">@answer.Text</a>
-   //     }
-   // @Html.ActionLink(question.CorrectAnswer, "CorrectAnswer", "Home", new { id = question.Id }, new { @class = "correct-answer"})
     }
 }

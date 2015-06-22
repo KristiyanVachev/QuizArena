@@ -1,35 +1,3 @@
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\QuizArena.Data.dll.config
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\QuizArena.Data.dll
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\QuizArena.Data.pdb
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\EntityFramework.dll
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\EntityFramework.SqlServer.dll
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\QuizArena.Models.dll
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\QuizArena.Models.pdb
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\EntityFramework.xml
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\EntityFramework.SqlServer.xml
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\obj\Debug\QuizArena.Data.csprojResolveAssemblyReference.cache
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\obj\Debug\QuizArena.Data.dll
-E:\Fucking final try\TWO\QuizArena\QuizArena.Data\obj\Debug\QuizArena.Data.pdb
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\QuizArena.Data.dll.config
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\QuizArena.Data.dll
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\QuizArena.Data.pdb
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\EntityFramework.dll
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\EntityFramework.SqlServer.dll
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\QuizArena.Models.dll
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\QuizArena.Models.pdb
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\EntityFramework.xml
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\EntityFramework.SqlServer.xml
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\obj\Debug\QuizArena.Data.csprojResolveAssemblyReference.cache
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\obj\Debug\QuizArena.Data.dll
-E:\backup\04. The most recent\QuizArena - Copy (2)\QuizArena.Data\obj\Debug\QuizArena.Data.pdb
 E:\backup\04. The most recent\QuizArena - Copy (2) - Copy\QuizArena.Data\bin\Debug\QuizArena.Data.dll.config
 E:\backup\04. The most recent\QuizArena - Copy (2) - Copy\QuizArena.Data\bin\Debug\QuizArena.Data.dll
 E:\backup\04. The most recent\QuizArena - Copy (2) - Copy\QuizArena.Data\bin\Debug\QuizArena.Data.pdb

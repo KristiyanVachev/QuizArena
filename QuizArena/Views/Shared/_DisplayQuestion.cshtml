@@ -1,0 +1,33 @@
+﻿@using QuizArena.Models
+@model Question
+
+@if (Model != null)
+{
+    <div>
+        @* TO-DO - Design, Randomize answers *@
+        Condition: @Model.Condition
+
+        @Html.ActionLink(Model.CorrectAnswer, "CorrectAnswer", "Home", new { id = Model.Id, gameType = "FullTest" }, new { @class = "btn btn-primary answer-click" })
+        @Html.ActionLink(Model.FirstIncorrect, "InCorrectAnswer", "Home", new { id = Model.Id, gameType = "FullTest" }, new { @class = "btn btn-primary answer-click" })
+        @Html.ActionLink(Model.SecondIncorrect, "InCorrectAnswer", "Home", new { id = Model.Id, gameType = "FullTest" }, new { @class = "btn btn-primary answer-click" })
+        @Html.ActionLink(Model.ThirdIncorrect, "InCorrectAnswer", "Home", new { id = Model.Id, gameType = "FullTest" }, new { @class = "btn btn-primary answer-click" })
+    </div>
+}
+
+
+<script>
+    $('answer-click').click(function () {
+        // slide-va
+    });
+
+    //След отговорен въпрос:
+    //--добавя се в count брой верни/неверни
+    //маха се стария, излиза нов въпрос
+
+    //трейнинг
+    //след всеки въпрос отговорен въпрос
+    //ако е верен се добавя в брояч
+    //при грешен се запаметява
+    //след последния въпрос се показват всички сгрешени въпроси, всеки въпрос заедно с това колко пъти е грешен и description-а
+    //запаметяват се 
+</script>
