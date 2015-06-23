@@ -4,13 +4,120 @@
     ViewBag.Title = "FullTest";
 }
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <h2>FullTest</h2>
 
 @if (Model != null && Model.Any())
 {
+    Random rnd = new Random();
+
     foreach (var question in Model)
     {
-        @Html.Action("DisplayQuestion", "Home", new { q = question })
+        //list of the answers
+        var answerList = new List<string>();
+        answerList.Add(question.CorrectAnswer);
+        answerList.Add(question.FirstIncorrect);
+        answerList.Add(question.SecondIncorrect);
+        answerList.Add(question.ThirdIncorrect);
+
+        var clickType = new List<string>();
+        clickType.Add("correct-click");
+        clickType.Add("incorrect-click");
+        clickType.Add("incorrect-click");
+        clickType.Add("incorrect-click");
+
+      
+        //answerList.Add(@"<button class=""btn btn-primary correct-click"">" + question.CorrectAnswer + "</button>");
+        //answerList.Add(@"<button class=""btn btn-primary inCorrect-click"">" + question.FirstIncorrect + "</button>");
+        //answerList.Add(@"<button class=""btn btn-primary inCorrect-click"">" + question.SecondIncorrect + "</button>");
+        //answerList.Add(@"<button class=""btn btn-primary inCorrect-click"">" + question.ThirdIncorrect + "</button>"); 
+
+        //Option 1
+        int[] numberArr = { 0, 1, 2, 3 };
+
+        //shuffle the array 
+        for (int i = 0; i < 4; i++)
+        {
+            int random = rnd.Next(0, 4);
+            int temp = numberArr[i];
+            numberArr[i] = numberArr[random];
+            numberArr[random] = temp;
+        }
+
+        @*for (int i = 0; i < 4; i++)
+        {
+            <script>
+                $(".question-holder").append(@answerList[numberArr[0]]);
+                $(".question-holder").append(@answerList[numberArr[1]]);
+                $(".question-holder").append(@answerList[numberArr[2]]);
+                $(".question-holder").append(@answerList[numberArr[3]]);
+            </script>
+        }*@
+
+        @*//Option 2
+        for (int i = 4; i > 0; i--)
+        {
+            int random = rnd.Next(0, i);
+            <script>
+                $(".question-holder").append(@answerList[random]);
+            </script>
+            @answerList.RemoveAt(random); //after it's appended, the answer should be removed
+        }*@
+        
+        
+        //holder for each question
+
+        <div class="question-holder">
+            @question.Condition
+
+            <button class="btn btn-primary @clickType[numberArr[0]]">@answerList[numberArr[0]]</button>
+            <button class="btn btn-primary @clickType[numberArr[1]]">@answerList[numberArr[1]]</button>
+            <button class="btn btn-primary @clickType[numberArr[2]]">@answerList[numberArr[2]]</button>
+            <button class="btn btn-primary @clickType[numberArr[3]]">@answerList[numberArr[3]]</button>
+        </div>
+
+
 
     }
+    <section id="results"></section>
+    <script>
+        var questionsLeft = 5;
+        var correctCount = 0;
+        var inCorrectCount = 0;
+
+        //sum each incorrect answer
+        $(document).on('click', '.incorrect-click', function () {
+            alert(1);
+            inCorrectCount++;
+            questionsLeft--;
+            if (questionsLeft < 1) {
+                //alert(inCorrectCount);
+                //alert(correctCount)
+
+                //ActionLink(correctCount, inCorrectCount, dateTime.now)
+            }
+        });
+
+        //sum each correct asnwer
+        $(document).on('click', '.correct-click', function () {
+            alert(2);
+            correctCount++;
+            questionsLeft--; //decreaes the questions left
+
+            if (questionsLeft < 1) {
+                //alert(inCorrectCount);
+                //alert(correctCount)
+                $.ajax({
+                    url: '@Url.Action("EndFullGame", "Home")',
+                    data: { correctCount: correctCount, inCorrectCount: inCorrectCount },
+                    success: function (data) {
+                        console.log(data);
+                        $('section#results').append(data);
+                    }
+                });//
+                //ActionLink EndFullGame (correctCount, inCorrectCount)
+            }
+        });
+
+    </script>
 }

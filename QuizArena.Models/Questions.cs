@@ -10,6 +10,7 @@ namespace QuizArena.Models
     {
         public int Id { get; set; }
 
+        //[StringLenght(100, MinimumLength = 10)]
         public string Condition { get; set; }
 
         public string CorrectAnswer { get; set; }

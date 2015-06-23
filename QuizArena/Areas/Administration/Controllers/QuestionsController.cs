@@ -11,6 +11,7 @@ using QuizArena.Models;
 
 namespace QuizArena.Areas.Administration.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class QuestionsController : Controller
     {
         private QuizArenaDbContext db = new QuizArenaDbContext();
@@ -26,7 +27,7 @@ namespace QuizArena.Areas.Administration.Controllers
 
             ViewBag.ConditionSortParm = String.IsNullOrEmpty(sortOrder) ? "condition_desc" : "";
             var questions = from s in db.Questions
-                           select s;
+                            select s;
 
             //paging
             if (!String.IsNullOrEmpty(searchString))
