@@ -97,18 +97,16 @@ namespace QuizArena.Controllers
                     {
                         break;
                     }
-
                     counter++;
                 }
             }
-
-            ViewBag.Message = "Your application description page.";
 
             return View(questions);
         }
 
         public ActionResult Competative()
         {
+            //TO-DO
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -116,6 +114,7 @@ namespace QuizArena.Controllers
 
         public ActionResult Statistics()
         {
+            //TO-DO
             ViewBag.Message = "Your application description page.";
 
             return View();

@@ -11,7 +11,7 @@ using QuizArena.Models;
 
 namespace QuizArena.Areas.Administration.Controllers
 {
-    [Authorize(Roles="Admin")]
+    //[Authorize(Roles="Admin")]
     public class CategoriesController : Controller
     {
         private QuizArenaDbContext db = new QuizArenaDbContext();

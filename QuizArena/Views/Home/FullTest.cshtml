@@ -5,6 +5,7 @@
 }
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Content/custom.css" rel="stylesheet" />
 <h2>FullTest</h2>
 
 @if (Model != null && Model.Any())
@@ -28,7 +29,7 @@
 
         int[] numberArr = { 0, 1, 2, 3 };
 
-        //shuffle the array 
+        //shuffle the array
         for (int i = 0; i < 4; i++)
         {
             int random = rnd.Next(0, 4);
@@ -37,20 +38,22 @@
             numberArr[random] = temp;
         }
 
-        <div class="question-holder">
-            @question.Condition
+        <div class="general-holder">
+            <div class="question-holder">@question.Condition</div>
 
-            @*Shuffle the order of the answers *@
-            <button class="btn btn-primary @clickType[numberArr[0]]">@answerList[numberArr[0]]</button>
-            <button class="btn btn-primary @clickType[numberArr[1]]">@answerList[numberArr[1]]</button>
-            <button class="btn btn-primary @clickType[numberArr[2]]">@answerList[numberArr[2]]</button>
-            <button class="btn btn-primary @clickType[numberArr[3]]">@answerList[numberArr[3]]</button>
+            <div class="answer-holder">
+                @*Shuffle the order of the answers *@
+                <button class="btn btn-primary @clickType[numberArr[0]] asnwer">@answerList[numberArr[0]]</button>
+                <button class="btn btn-primary @clickType[numberArr[1]] asnwer">@answerList[numberArr[1]]</button>
+                <button class="btn btn-primary @clickType[numberArr[2]] asnwer">@answerList[numberArr[2]]</button>
+                <button class="btn btn-primary @clickType[numberArr[3]] asnwer">@answerList[numberArr[3]]</button>
+            </div>
         </div>
 
     }
-    
-    <section id="results"></section>
-    
+
+    <div id="results"></div>
+
     <script>
         var questionsLeft = @Model.Count();
         var correctCount = 0;
@@ -62,7 +65,11 @@
             inCorrectCount++;
             questionsLeft--;
 
+            
+
             ifLastQuestion(correctCount, inCorrectCount, questionsLeft);
+
+
 
         });
 
@@ -73,7 +80,7 @@
             questionsLeft--; //decreaes the questions left
 
             ifLastQuestion(correctCount, inCorrectCount, questionsLeft);
-    
+
         });
 
         function ifLastQuestion(correctCount, inCorrectCount, questionsLeft) {
@@ -83,11 +90,13 @@
                     data: { correctCount: correctCount, inCorrectCount: inCorrectCount },
                     success: function (data) {
                         console.log(data);
-                        $('section#results').append(data);
+                        $('div#results').append(data);
                     }
                 });
             }
         }
+
+
 
     </script>
 }
